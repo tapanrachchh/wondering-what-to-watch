@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
+import { useRouter } from "next/navigation";
 
 export function PlaceholdersAndVanishInput({
   placeholders,
@@ -49,6 +50,8 @@ export function PlaceholdersAndVanishInput({
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState("");
   const [animating, setAnimating] = useState(false);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const draw = useCallback(() => {
     if (!inputRef.current) return;
@@ -154,6 +157,8 @@ export function PlaceholdersAndVanishInput({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !animating) {
       vanishAndSubmit();
+      setLoading(true);
+      router.push("/search/" + value);
     }
   };
 
@@ -181,6 +186,7 @@ export function PlaceholdersAndVanishInput({
       className={cn(
         "w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
         value && "bg-gray-50"
+        // loading && "animate-pulse border-[1px] border-blue-500"
       )}
     >
       <canvas
@@ -209,7 +215,7 @@ export function PlaceholdersAndVanishInput({
       />
 
       <button
-        disabled={!value}
+        disabled={!value || loading}
         type="submit"
         className="absolute right-2 top-1/2 z-40 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-gray-100 bg-black dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
@@ -243,6 +249,14 @@ export function PlaceholdersAndVanishInput({
           <path d="M13 18l6 -6" />
           <path d="M13 6l6 6" />
         </motion.svg>
+        <div
+          className={cn(
+            " items-center justify-center hidden",
+            loading && "flex"
+          )}
+        >
+          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
       </button>
 
       <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">

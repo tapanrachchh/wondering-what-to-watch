@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
+import Link from "next/link";
 
 export function Searchable({ placeholder }: { placeholder?: string }) {
   const defaultPlaceholders = [
@@ -13,15 +14,9 @@ export function Searchable({ placeholder }: { placeholder?: string }) {
     "Crime thrillers",
   ];
 
-  async function searchAction(formData: FormData) {
-    const searchTerm = formData.get("searchTerm") as string;
-
-    redirect(`/search/${searchTerm}`);
-  }
-
   return (
     <div className="mb-12 flex flex-col w-full ">
-      <form action={searchAction} className="w-full">
+      <form action={() => {}} className="w-full">
         <PlaceholdersAndVanishInput
           placeholders={placeholder ? [placeholder] : defaultPlaceholders}
           onSubmit={(e) => {
