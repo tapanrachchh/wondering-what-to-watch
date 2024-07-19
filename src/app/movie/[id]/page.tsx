@@ -95,7 +95,7 @@ async function MoviePage({
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path})`,
         }}
       >
-        <div className="bg-black bg-opacity-60 h-full flex md:flex-row  flex-col items-center p-4 justify-center sm:justify-start sm:px-40  pt-28 sm:pt-20">
+        <div className="bg-black bg-opacity-60 h-full flex md:flex-row  flex-col items-center p-4 justify-center sm:justify-start sm:px-40  pt-28 sm:pt-20 ">
           <Image
             src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
             height={250}
@@ -112,9 +112,9 @@ async function MoviePage({
               <span className="text-gray-300">Genre:</span>
               <span className="ml-2">{movie.genres}</span>
             </div>
-            <div className="mt-2 max-w-96">
+            <div className="mt-2 sm:max-w-[50%]">
               <span className="text-gray-300">Summary:</span>
-              <span className="ml-2">{trimText(movie.$vectorize, 100)}</span>
+              <span className="ml-2">{trimText(movie.$vectorize, 180)}</span>
             </div>{" "}
             <div className="mt-2 max-w-96">
               <span className="text-gray-300">Directed by:</span>

@@ -30,7 +30,7 @@ async function SearchTerm({
 
   return (
     <main className="pt-24 p-4 w-full">
-      <Searchable />
+      <Searchable placeholder={decodeURIComponent(term)} />
       <MovieList movies={searchResults} />;
     </main>
   );
