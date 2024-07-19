@@ -1,6 +1,7 @@
 import AddToWatchList from "@/components/AddToWatchList";
 import CopyButton from "@/components/CopyButton";
 import { CardDemo } from "@/components/MovieCard";
+import Rating from "@/components/Rating";
 import db from "@/db";
 import { cn, getLanguageName, trimText } from "@/lib/utils";
 import { Movie } from "@/types/movie";
@@ -108,7 +109,15 @@ async function MoviePage({
             <div className="mt-2">{`${parseInt(movie.release_year)} | ${
               movie.runtime
             } min | ${getLanguageName(movie.original_language)}`}</div>
-            <div className="mt-6">
+            <div
+              className={cn(
+                "mt-4 w-full hidden items-center justify-center sm:justify-start",
+                movie.vote_average && "flex"
+              )}
+            >
+              <Rating number={Math.round(parseInt(movie.vote_average) / 2)} />
+            </div>
+            <div className="mt-4">
               <span className="text-gray-300">Genre:</span>
               <span className="ml-2">{movie.genres}</span>
             </div>
