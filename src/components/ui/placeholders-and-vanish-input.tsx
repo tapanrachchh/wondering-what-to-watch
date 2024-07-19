@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/utils";
-import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { cn } from '../../lib/utils';
 
 export function PlaceholdersAndVanishInput({
   placeholders,
@@ -25,30 +25,30 @@ export function PlaceholdersAndVanishInput({
     }, 3000);
   };
   const handleVisibilityChange = () => {
-    if (document.visibilityState !== "visible" && intervalRef.current) {
+    if (document.visibilityState !== 'visible' && intervalRef.current) {
       clearInterval(intervalRef.current); // Clear the interval when the tab is not visible
       intervalRef.current = null;
-    } else if (document.visibilityState === "visible") {
+    } else if (document.visibilityState === 'visible') {
       startAnimation(); // Restart the interval when the tab becomes visible
     }
   };
 
   useEffect(() => {
     startAnimation();
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [placeholders]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const newDataRef = useRef<any[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [animating, setAnimating] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -57,7 +57,7 @@ export function PlaceholdersAndVanishInput({
     if (!inputRef.current) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     canvas.width = 800;
@@ -65,9 +65,9 @@ export function PlaceholdersAndVanishInput({
     ctx.clearRect(0, 0, 800, 800);
     const computedStyles = getComputedStyle(inputRef.current);
 
-    const fontSize = parseFloat(computedStyles.getPropertyValue("font-size"));
+    const fontSize = parseFloat(computedStyles.getPropertyValue('font-size'));
     ctx.font = `${fontSize * 2}px ${computedStyles.fontFamily}`;
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = '#FFF';
     ctx.fillText(value, 16, 40);
 
     const imageData = ctx.getImageData(0, 0, 800, 800);
@@ -129,7 +129,7 @@ export function PlaceholdersAndVanishInput({
           }
         }
         newDataRef.current = newArr;
-        const ctx = canvasRef.current?.getContext("2d");
+        const ctx = canvasRef.current?.getContext('2d');
         if (ctx) {
           ctx.clearRect(pos, 0, 800, 800);
           newDataRef.current.forEach((t) => {
@@ -146,7 +146,7 @@ export function PlaceholdersAndVanishInput({
         if (newDataRef.current.length > 0) {
           animateFrame(pos - 8);
         } else {
-          setValue("");
+          setValue('');
           setAnimating(false);
         }
       });
@@ -155,9 +155,9 @@ export function PlaceholdersAndVanishInput({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !animating && value != placeholders[0]) {
+    if (e.key === 'Enter' && !animating && value != placeholders[0] && value) {
       setLoading(true);
-      router.push("/search/" + value);
+      router.push('/search/' + value);
     }
   };
 
@@ -165,11 +165,11 @@ export function PlaceholdersAndVanishInput({
     setAnimating(true);
     draw();
 
-    const value = inputRef.current?.value || "";
+    const value = inputRef.current?.value || '';
     if (value && inputRef.current) {
       const maxX = newDataRef.current.reduce(
         (prev, current) => (current.x > prev ? current.x : prev),
-        0
+        0,
       );
       animate(maxX);
     }
@@ -183,15 +183,15 @@ export function PlaceholdersAndVanishInput({
   return (
     <div
       className={cn(
-        "w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
-        value && "bg-gray-50"
+        'w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200',
+        value && 'bg-gray-50',
         // loading && "animate-pulse border-[1px] border-blue-500"
       )}
     >
       <canvas
         className={cn(
-          "absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20",
-          !animating ? "opacity-0" : "opacity-100"
+          'absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20',
+          !animating ? 'opacity-0' : 'opacity-100',
         )}
         ref={canvasRef}
       />
@@ -208,8 +208,8 @@ export function PlaceholdersAndVanishInput({
         name={name}
         type="text"
         className={cn(
-          "w-full relative text-sm sm:text-base z-50 border-none dark:text-white bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20",
-          animating && "text-transparent dark:text-transparent"
+          'w-full relative text-sm sm:text-base z-50 border-none dark:text-white bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20',
+          animating && 'text-transparent dark:text-transparent',
         )}
       />
 
@@ -234,15 +234,15 @@ export function PlaceholdersAndVanishInput({
           <motion.path
             d="M5 12l14 0"
             initial={{
-              strokeDasharray: "50%",
-              strokeDashoffset: "50%",
+              strokeDasharray: '50%',
+              strokeDashoffset: '50%',
             }}
             animate={{
-              strokeDashoffset: value ? 0 : "50%",
+              strokeDashoffset: value ? 0 : '50%',
             }}
             transition={{
               duration: 0.3,
-              ease: "linear",
+              ease: 'linear',
             }}
           />
           <path d="M13 18l6 -6" />
@@ -250,8 +250,8 @@ export function PlaceholdersAndVanishInput({
         </motion.svg>
         <div
           className={cn(
-            " items-center justify-center hidden",
-            loading && "flex"
+            ' items-center justify-center hidden',
+            loading && 'flex',
           )}
         >
           <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
@@ -277,7 +277,7 @@ export function PlaceholdersAndVanishInput({
               }}
               transition={{
                 duration: 0.3,
-                ease: "linear",
+                ease: 'linear',
               }}
               className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate"
             >
