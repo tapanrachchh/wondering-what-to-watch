@@ -2,16 +2,19 @@
 import MovieList from '@/components/MovieList';
 import { Movie } from '@/types/movie';
 import { Bookmark } from 'lucide-react';
+import { useEffect } from 'react';
 
 const MyWatchlist = () => {
-  const watchListData = localStorage.getItem('my-watchlist');
-  const watchList = JSON.parse(watchListData || '{}');
-  const movies = Object.values(watchList) as Movie[];
+  let movies: Movie[] = [];
+  useEffect(() => {
+    const watchListData = localStorage.getItem('my-watchlist');
+    const watchList = JSON.parse(watchListData || '{}');
+    movies = Object.values(watchList) as Movie[];
+  }, []);
 
   if (!movies.length)
     return (
-      <div className=" text-white flex">
-        {' '}
+      <div className=" text-white flex w-full justify-center items-center">
         <Bookmark className="mr-2" /> Your list is empty{' '}
       </div>
     );
