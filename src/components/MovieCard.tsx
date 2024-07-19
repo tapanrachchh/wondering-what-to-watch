@@ -1,7 +1,6 @@
-"use client";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export function CardDemo({ movie }: { movie: any }) {
   const image = `https://image.tmdb.org/t/p/w440_and_h660_face${movie.poster_path}`;
@@ -9,12 +8,12 @@ export function CardDemo({ movie }: { movie: any }) {
   return (
     <Link
       className="sm:w-64 group/card"
-      href={"/movie/" + movie._id}
+      href={'/movie/' + movie._id}
       key={movie._id}
     >
       <div
         className={cn(
-          " cursor-pointer overflow-hidden relative card h-64 w-44 rounded-md shadow-xl  max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4 bg-cover sm:mb-4"
+          ' cursor-pointer overflow-hidden relative card h-64 w-44 rounded-md shadow-xl  max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4 bg-cover sm:mb-4',
         )}
         style={{
           backgroundImage: `url('${image}')`,

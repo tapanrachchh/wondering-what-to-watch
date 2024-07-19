@@ -1,13 +1,10 @@
-import { CardDemo } from "@/components/MovieCard";
-import MovieList from "@/components/MovieList";
-import { Searchable } from "@/components/Searchable";
-import db from "@/db";
-import { Movie } from "@/types/movie";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import MovieList from '@/components/MovieList';
+import { Searchable } from '@/components/Searchable';
+import db from '@/db';
+import { Movie } from '@/types/movie';
 
 async function Home() {
-  const movies = db.collection("movies");
+  const movies = db.collection('movies');
   const popularMovies = (await movies
     .find(
       {},
@@ -19,7 +16,7 @@ async function Home() {
         // Get popular movies randomly
         skip: parseInt((Math.random() * 100).toString()),
         projection: { $vector: 0 },
-      }
+      },
     )
     .toArray()) as Movie[];
 

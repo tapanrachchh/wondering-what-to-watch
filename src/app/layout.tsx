@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import NextTopLoader from "nextjs-toploader";
-import { Toaster } from "react-hot-toast";
+import { Navbar } from '@/components/Navbar';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from 'react-hot-toast';
+import './globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Movie Recommendation",
+  title: 'Movie Recommendation',
   description:
-    "Wondering what to watch? chose movie of similar movies based on your search",
+    'Wondering what to watch? chose movie of similar movies based on your search',
 };
 
 export default function RootLayout({

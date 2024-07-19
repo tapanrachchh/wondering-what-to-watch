@@ -1,5 +1,3 @@
-import React from "react";
-
 const Rating = ({ number }: { number: number }) => {
   const filledStars = Math.min(5, number);
   const blankStars = 5 - filledStars;

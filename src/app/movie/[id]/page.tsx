@@ -1,30 +1,29 @@
-import AddToWatchList from "@/components/AddToWatchList";
-import CopyButton from "@/components/CopyButton";
-import { CardDemo } from "@/components/MovieCard";
-import Rating from "@/components/Rating";
-import db from "@/db";
-import { cn, getLanguageName, trimText } from "@/lib/utils";
-import { Movie } from "@/types/movie";
-import { Youtube } from "lucide-react";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import React from "react";
+import AddToWatchList from '@/components/AddToWatchList';
+import CopyButton from '@/components/CopyButton';
+import { CardDemo } from '@/components/MovieCard';
+import Rating from '@/components/Rating';
+import db from '@/db';
+import { cn, getLanguageName, trimText } from '@/lib/utils';
+import { Movie } from '@/types/movie';
+import { Youtube } from 'lucide-react';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
   params: { id },
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const movies = db.collection("movies");
+  const movies = db.collection('movies');
   const search = await movies.find(
     { _id: id },
     {
       projection: {
         title: 1,
       },
-    }
+    },
   );
 
   if (!(await search.hasNext())) {
@@ -46,7 +45,7 @@ async function MoviePage({
     id: string;
   };
 }) {
-  const movies = db.collection("movies");
+  const movies = db.collection('movies');
   const search = await movies.find(
     { $and: [{ _id: id }] },
     {
@@ -66,7 +65,7 @@ async function MoviePage({
         original_language: 1,
         vote_average: 1,
       },
-    }
+    },
   );
 
   if (!(await search.hasNext())) {
@@ -82,7 +81,7 @@ async function MoviePage({
         vector: movie.$vector,
         limit: 7,
         includeSimilarity: true,
-      }
+      },
     )
     .toArray()) as unknown as Movie[];
 
@@ -91,14 +90,14 @@ async function MoviePage({
   return (
     <div className="h-screen w-full">
       <div
-        className={cn("h-screen md:h-[55%] w-full bg-cover")}
+        className={cn('h-screen md:h-[55%] w-full bg-cover')}
         style={{
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path})`,
         }}
       >
         <div className="bg-black bg-opacity-60 h-full flex md:flex-row  flex-col items-center p-4 justify-center sm:justify-start sm:px-40  pt-28 sm:pt-20 ">
           <Image
-            src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
+            src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
             height={250}
             width={200}
             alt="poster"
@@ -111,8 +110,8 @@ async function MoviePage({
             } min | ${getLanguageName(movie.original_language)}`}</div>
             <div
               className={cn(
-                "mt-4 w-full hidden items-center justify-center sm:justify-start",
-                movie.vote_average && "flex"
+                'mt-4 w-full hidden items-center justify-center sm:justify-start',
+                movie.vote_average && 'flex',
               )}
             >
               <Rating number={Math.round(parseInt(movie.vote_average) / 2)} />
@@ -124,7 +123,7 @@ async function MoviePage({
             <div className="mt-2 sm:max-w-[50%]">
               <span className="text-gray-300">Summary:</span>
               <span className="ml-2">{trimText(movie.$vectorize, 180)}</span>
-            </div>{" "}
+            </div>{' '}
             <div className="mt-2 max-w-96">
               <span className="text-gray-300">Directed by:</span>
               <span className="ml-2">{movie.directors}</span>

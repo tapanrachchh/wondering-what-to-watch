@@ -1,7 +1,5 @@
-import React from "react";
-import { Searchable } from "./Searchable";
-import { CardDemo } from "./MovieCard";
-import { Movie } from "@/types/movie";
+import { Movie } from '@/types/movie';
+import { CardDemo } from './MovieCard';
 
 const MovieList = ({
   movies,

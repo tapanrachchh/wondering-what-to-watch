@@ -1,17 +1,15 @@
-"use client";
+'use client';
 
-import { redirect } from "next/navigation";
-import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
-import Link from "next/link";
+import { PlaceholdersAndVanishInput } from './ui/placeholders-and-vanish-input';
 
 export function Searchable({ placeholder }: { placeholder?: string }) {
   const defaultPlaceholders = [
-    "Wondering what to watch?",
-    "Movies like interstellar",
-    "Movies of robert downy jr",
-    "Love hate movie",
-    "Search similar movies",
-    "Crime thrillers",
+    'Wondering what to watch?',
+    'Movies like interstellar',
+    'Movies of robert downy jr',
+    'Love hate movie',
+    'Search similar movies',
+    'Crime thrillers',
   ];
 
   return (

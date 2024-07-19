@@ -1,8 +1,7 @@
-import { CardDemo } from "@/components/MovieCard";
-import MovieList from "@/components/MovieList";
-import { Searchable } from "@/components/Searchable";
-import db from "@/db";
-import { Movie } from "@/types/movie";
+import MovieList from '@/components/MovieList';
+import { Searchable } from '@/components/Searchable';
+import db from '@/db';
+import { Movie } from '@/types/movie';
 
 // refresh cache every 24 hours
 export const revalidate = 60 * 60 * 24;
@@ -14,7 +13,7 @@ async function SearchTerm({
     term: string;
   };
 }) {
-  const movies = db.collection("movies");
+  const movies = db.collection('movies');
 
   const searchResults = (await movies
     .find(
@@ -23,7 +22,7 @@ async function SearchTerm({
         vectorize: term,
         limit: 8,
         projection: { $vector: 0 },
-      }
+      },
     )
     .toArray()) as Movie[];
 

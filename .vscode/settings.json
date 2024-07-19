@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["clsx"]
+  "cSpell.words": ["clsx"],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all"
 }
