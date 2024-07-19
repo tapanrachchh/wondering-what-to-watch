@@ -1,7 +1,6 @@
 import AddToWatchList from "@/components/AddToWatchList";
 import CopyButton from "@/components/CopyButton";
 import { CardDemo } from "@/components/MovieCard";
-import MovieList from "@/components/MovieList";
 import db from "@/db";
 import { cn, getLanguageName, trimText } from "@/lib/utils";
 import { Movie } from "@/types/movie";
@@ -64,6 +63,7 @@ async function MoviePage({
         _id: 1,
         runtime: 1,
         original_language: 1,
+        vote_average: 1,
       },
     }
   );

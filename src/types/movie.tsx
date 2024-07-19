@@ -12,4 +12,5 @@ export interface Movie {
   _id: string;
   runtime: string;
   original_language: string;
+  vote_average: string;
 }

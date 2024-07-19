@@ -22,7 +22,6 @@ async function SearchTerm({
       {
         vectorize: term,
         limit: 8,
-        // Do not include vectors in the output.
         projection: { $vector: 0 },
       }
     )

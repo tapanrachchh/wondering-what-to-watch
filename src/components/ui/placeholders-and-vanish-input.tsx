@@ -155,8 +155,7 @@ export function PlaceholdersAndVanishInput({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !animating) {
-      vanishAndSubmit();
+    if (e.key === "Enter" && !animating && value != placeholders[0]) {
       setLoading(true);
       router.push("/search/" + value);
     }
