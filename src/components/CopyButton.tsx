@@ -9,8 +9,9 @@ const CopyButton = () => {
     <div
       className="bg-white ml-2 text-black rounded-full w-10 h-10 flex items-center justify-center"
       onClick={() => {
-        navigator.clipboard.writeText("test.com");
-        toast.success("Linked copied");
+        navigator.clipboard?.writeText("test.com").then(() => {
+          toast.success("Linked copied");
+        });
       }}
     >
       <Copy />
