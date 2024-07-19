@@ -2,14 +2,15 @@
 import MovieList from '@/components/MovieList';
 import { Movie } from '@/types/movie';
 import { Bookmark } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const MyWatchlist = () => {
-  let movies: Movie[] = [];
+  const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
     const watchListData = localStorage.getItem('my-watchlist');
     const watchList = JSON.parse(watchListData || '{}');
-    movies = Object.values(watchList) as Movie[];
+    const moviesData = Object.values(watchList) as Movie[];
+    setMovies(moviesData);
   }, []);
 
   if (!movies.length)
