@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: 'Movie Recommendation',
   description:
     'Wondering what to watch? chose movie of similar movies based on your search',
+  icons: {
+    icon: 'favicon.ico',
+  },
 };
 
 export default function RootLayout({

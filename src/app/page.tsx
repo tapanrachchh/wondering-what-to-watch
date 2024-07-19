@@ -13,7 +13,6 @@ async function Home() {
         sort: {
           popularity: -1,
         },
-        // Get popular movies randomly
         skip: parseInt((Math.random() * 100).toString()),
         projection: { $vector: 0 },
       },
