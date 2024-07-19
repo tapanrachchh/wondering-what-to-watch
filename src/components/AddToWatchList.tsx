@@ -2,6 +2,7 @@
 import { Movie } from "@/types/movie";
 import { Book, Bookmark, Delete, Trash2 } from "lucide-react";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const checkIfExists = (id: string) => {
   const prevMovies = JSON.parse(localStorage.getItem("my-watchlist") || "{}");
@@ -19,10 +20,12 @@ const AddToWatchList = ({ movie }: { movie: Movie }) => {
           delete prevMovies[movie._id];
           localStorage.setItem("my-watchlist", JSON.stringify(prevMovies));
           setAdded(false);
+          toast("Removed from your watchlist");
         } else {
           prevMovies[movie._id] = movie;
           localStorage.setItem("my-watchlist", JSON.stringify(prevMovies));
           setAdded(true);
+          toast.success("Added to your watchlist!");
         }
       }}
     >
