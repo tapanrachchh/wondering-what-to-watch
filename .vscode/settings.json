@@ -2,7 +2,7 @@
   "cSpell.words": ["clsx"],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all"

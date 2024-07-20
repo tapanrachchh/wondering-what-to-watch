@@ -1,5 +1,6 @@
 import AddToWatchList from '@/components/AddToWatchList';
 import CopyButton from '@/components/CopyButton';
+import LinkGroup from '@/components/LinkGroup';
 import { CardDemo } from '@/components/MovieCard';
 import Rating from '@/components/Rating';
 import db from '@/db';
@@ -126,7 +127,10 @@ async function MoviePage({
             </div>{' '}
             <div className="mt-2 max-w-96">
               <span className="text-gray-300">Directed by:</span>
-              <span className="ml-2">{movie.directors}</span>
+              <LinkGroup
+                terms={movie.directors.split(',')}
+                base="/search/directed-by "
+              />
             </div>
             <div className="mt-2 max-w-96">
               <span className="text-gray-300">Staring:</span>
