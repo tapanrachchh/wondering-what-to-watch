@@ -89,20 +89,20 @@ async function MoviePage({
   similarMovies.shift();
 
   return (
-    <div className="h-screen w-full">
+    <div className="w-full">
       <div
-        className={cn('h-screen md:h-[55%] w-full bg-cover')}
+        className={cn('w-full bg-cover')}
         style={{
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path})`,
         }}
       >
-        <div className="bg-black bg-opacity-60 h-full flex md:flex-row  flex-col items-center p-4 justify-center sm:justify-start sm:px-40  pt-28 sm:pt-20 ">
+        <div className="bg-black bg-opacity-60 py-8 flex md:flex-row  flex-col items-center pt-20 justify-center sm:justify-start sm:px-40 sm:pt-24 px-4 ">
           <Image
             src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
             height={250}
             width={200}
             alt="poster"
-            className="sm:mr-12 rounded-lg "
+            className="sm:mr-12 rounded-lg mt-8 sm:m-0"
           />
           <div className=" text-white flex-col text-center sm:text-left mt-4 sm:mt-0">
             <div className="font-bold  text-3xl block">{movie.title}</div>
