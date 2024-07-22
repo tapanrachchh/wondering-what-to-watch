@@ -7,7 +7,9 @@ async function Home() {
   const movies = db.collection('movies');
   const popularMovies = (await movies
     .find(
-      {},
+      {
+        adult: 'FALSE',
+      },
       {
         limit: 8,
         sort: {
