@@ -7,13 +7,13 @@ export function CardDemo({ movie }: { movie: any }) {
 
   return (
     <Link
-      className="sm:w-64 group/card"
+      className="group/card p-2"
       href={'/movie/' + movie._id}
       key={movie._id}
     >
       <div
         className={cn(
-          ' cursor-pointer overflow-hidden relative card h-64 w-44 rounded-md shadow-xl  max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4 bg-cover sm:mb-4',
+          ' cursor-pointer overflow-hidden relative card  aspect-[1/1.5] max-h-80 rounded-md shadow-xl  max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4 bg-cover ',
         )}
         style={{
           backgroundImage: `url('${image}')`,

@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} dark`}>
         <NextTopLoader showSpinner={false} color="#A5A5A5" />
         {/* <div className=" dark:bg-black w-full h-screen bg-white  dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center"> */}
 
